@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAIN University Programs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #07111f;
+  --navy2: #0d1e35;
+  --gold: #c9a84c;
+  --gold2: #e8c97a;
+  --gold3: #f5e0a0;
+  --white: #ffffff;
+  --muted: #7a90b0;
+  --border: rgba(201,168,76,0.18);
+  --card: rgba(255,255,255,0.035);
+  --card-hover: rgba(201,168,76,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.bg-fixed {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 100% 70% at 5% 0%, rgba(17,45,90,0.7) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 90%, rgba(201,168,76,0.07) 0%, transparent 55%),
+    linear-gradient(160deg, #07111f 0%, #0b1a30 40%, #07111f 100%);
+}
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.025) 1px, transparent 1px);
+  background-size: 70px 70px;
+}
+.bg-orb {
+  position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+  filter: blur(80px); opacity: 0.12;
+}
+.orb1 { width:500px; height:500px; background:radial-gradient(circle, #1a4080, transparent); top:-150px; left:-150px; }
+.orb2 { width:400px; height:400px; background:radial-gradient(circle, #c9a84c, transparent); bottom:-100px; right:-100px; }
+.content { position: relative; z-index: 1; }
+
+/* LANDING */
+#pg-landing {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 60px 24px;
+}
+.logo-mark {
+  width: 64px; height: 64px;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 32px;
+  background: rgba(201,168,76,0.07);
+  animation: fadeD 0.6s ease both;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 100px;
+  padding: 5px 16px;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold2);
+  margin-bottom: 28px;
+  animation: fadeD 0.6s ease 0.1s both;
+}
+.eyebrow-dot {
+  width:5px; height:5px; border-radius:50%; background:var(--gold);
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.landing-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900; line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+  animation: fadeD 0.7s ease 0.15s both;
+}
+.landing-title .line2 {
+  display: block;
+  background: linear-gradient(110deg, var(--gold) 0%, var(--gold2) 50%, var(--gold3) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.landing-sub {
+  font-size: 1.05rem; color: var(--muted);
+  font-weight: 300; line-height: 1.7;
+  max-width: 440px; margin: 0 auto 56px;
+  animation: fadeD 0.7s ease 0.22s both;
+}
+.headline-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; margin: 36px auto 44px;
+  width: 280px;
+  animation: fadeD 0.7s ease 0.25s both;
+}
+.divider-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.45), transparent);
+}
+.divider-diamond {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px rgba(201,168,76,0.6);
+  flex-shrink: 0;
+}
+.btn-group {
+  display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+  animation: fadeD 0.7s ease 0.3s both;
+}
+.btn {
+  position: relative; border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-weight: 600;
+  border-radius: 6px; overflow: hidden; transition: all 0.3s ease;
+  padding: 0;
+}
+.btn-inner {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 52px; position: relative; z-index: 1;
+}
+.btn-type {
+  font-size: 10px; font-weight: 500; letter-spacing: 2px;
+  text-transform: uppercase; opacity: 0.65; margin-bottom: 3px;
+}
+.btn-name { font-size: 1.1rem; font-weight: 700; }
+.btn-gold {
+  background: linear-gradient(135deg, #c9a84c 0%, #a8822a 60%, #7a5f1a 100%);
+  color: var(--navy);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.28), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.btn-gold:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 56px rgba(201,168,76,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.btn-outline {
+  background: rgba(255,255,255,0.04);
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.15);
+}
+.btn-outline:hover {
+  background: rgba(201,168,76,0.08);
+  border-color: rgba(201,168,76,0.5);
+  color: var(--gold2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 56px rgba(201,168,76,0.12);
+}
+.stats-row {
+  display: flex; gap: 56px; margin-top: 88px;
+  flex-wrap: wrap; justify-content: center;
+  animation: fadeD 0.7s ease 0.4s both;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem; font-weight: 700;
+  color: var(--gold2); line-height: 1;
+}
+.stat-lbl {
+  font-size: 0.72rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 1.5px; margin-top: 6px;
+}
+.stat-div {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, transparent, var(--border), transparent);
+  align-self: center;
+}
+
+/* PROGRAM LIST PAGE */
+#pg-programs, #pg-electives {
+  display: none; min-height: 100vh; padding: 0 0 80px;
+}
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(7,17,31,0.88);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  padding: 16px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.topbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--gold2);
+}
+.topbar-brand span { color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 0.85rem; margin-left: 8px; }
+.back-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--muted);
+  padding: 9px 20px; border-radius: 5px;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem; transition: all 0.2s;
+}
+.back-btn:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); color: var(--gold2); }
+.page-body { max-width: 1100px; margin: 0 auto; padding: 48px 32px; }
+.page-hero {
+  margin-bottom: 48px;
+  display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
+.page-kicker {
+  font-size: 11px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px;
+}
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700; line-height: 1.1; letter-spacing: -0.5px;
+}
+.page-title .accent { color: var(--gold2); }
+.page-desc { color: var(--muted); font-size: 0.9rem; margin-top: 8px; font-weight: 300; }
+.count-pill {
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.25);
+  color: var(--gold2); padding: 6px 16px;
+  border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+  white-space: nowrap; margin-top: 4px;
+}
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+.prog-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 26px 26px 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative; overflow: hidden;
+  animation: fadeU 0.45s ease both;
+}
+.prog-card::after {
+  content: '';
+  position: absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.prog-card:hover {
+  background: var(--card-hover);
+  border-color: rgba(201,168,76,0.38);
+  transform: translateY(-5px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(201,168,76,0.1);
+}
+.prog-card:hover::after { transform: scaleX(1); }
+.prog-tag {
+  display: inline-block;
+  background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.28);
+  color: var(--gold2); padding: 3px 10px;
+  border-radius: 3px; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 14px;
+}
+.prog-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem; font-weight: 700; line-height: 1.2; margin-bottom: 10px;
+}
+.prog-meta { font-size: 0.78rem; color: var(--muted); margin-bottom: 20px; }
+.prog-footer {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.prog-elective-count { font-size: 0.75rem; color: var(--muted); }
+.prog-elective-count strong { color: var(--gold2); font-size: 1rem; margin-right: 4px; }
+.prog-arrow {
+  width:30px; height:30px; border-radius:50%;
+  border: 1px solid rgba(201,168,76,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 0.85rem;
+  transition: all 0.25s;
+}
+.prog-card:hover .prog-arrow {
+  background: var(--gold); color: var(--navy); border-color: var(--gold);
+}
+
+/* ELECTIVES PAGE */
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.bc-link { cursor: pointer; transition: color 0.2s; }
+.bc-link:hover { color: var(--gold2); }
+.bc-sep { opacity: 0.4; }
+.bc-current {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: var(--navy); padding: 2px 10px; border-radius: 3px;
+  font-weight: 700; font-size: 0.72px; letter-spacing: 0.5px;
+  font-size: 0.72rem;
+}
+.elec-table-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden;
+  margin-bottom: 36px;
+}
+.elec-table-head {
+  display: grid;
+  grid-template-columns: 44px 1fr 120px 120px 130px 160px;
+  gap: 12px; padding: 14px 24px;
+  background: rgba(201,168,76,0.08);
+  border-bottom: 1px solid var(--border);
+}
+.elec-table-head span {
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold);
+}
+.right { text-align: right; }
+.center { text-align: center; }
+.elec-row {
+  display: grid;
+  grid-template-columns: 44px 1fr 120px 120px 130px 160px;
+  gap: 12px; padding: 18px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.035);
+  align-items: center;
+  transition: background 0.2s;
+  animation: fadeU 0.4s ease both;
+}
+.elec-row:last-child { border-bottom: none; }
+.elec-row:hover { background: rgba(201,168,76,0.04); }
+.row-num { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+.row-name { font-size: 0.93rem; font-weight: 500; }
+.fee-wrap { text-align: right; }
+.fee-val { font-size: 0.88rem; font-weight: 600; display: block; }
+.total-val { color: var(--gold2); }
+.dl-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.08));
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold2); padding: 8px 14px;
+  border-radius: 5px; text-decoration: none;
+  font-size: 0.75rem; font-weight: 600;
+  transition: all 0.25s; white-space: nowrap;
+  justify-content: center;
+}
+.dl-btn:hover {
+  background: linear-gradient(135deg, rgba(201,168,76,0.28), rgba(201,168,76,0.15));
+  border-color: var(--gold); color: var(--gold3);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(201,168,76,0.2);
+}
+
+/* DOMESTIC ADMISSIONS */
+.domestic-section {
+  margin-top: 48px; padding-top: 40px;
+  border-top: 1px solid var(--border);
+  animation: fadeU 0.5s ease 0.15s both;
+}
+.domestic-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--gold2); margin-bottom: 24px;
+}
+.domestic-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px;
+  margin-bottom: 20px;
+}
+.domestic-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 8px; padding: 20px 20px 18px;
+}
+.dc-label {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.2px;
+  color: var(--muted); margin-bottom: 8px;
+}
+.dc-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700; color: var(--gold2);
+}
+.dc-value span { font-size: 0.9rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 300; margin-left: 2px; }
+.notice-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+@media(max-width:640px) { .notice-cards { grid-template-columns: 1fr; } }
+.notice-card {
+  background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 8px; padding: 16px 18px; display: flex; gap: 12px;
+}
+.notice-icon {
+  width: 32px; height: 32px; border-radius: 6px;
+  background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; flex-shrink: 0;
+}
+.notice-label {
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--gold); font-weight: 700; margin-bottom: 4px;
+}
+.notice-text { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+/* ANIMATIONS */
+@keyframes fadeD { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:none; } }
+@keyframes fadeU { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .topbar { padding: 14px 20px; }
+  .page-body { padding: 32px 20px; }
+  .elec-table-head, .elec-row {
+    grid-template-columns: 36px 1fr 90px 90px;
+  }
+  .col-total, .col-brochure,
+  .elec-table-head span:nth-child(5),
+  .elec-table-head span:nth-child(6) { display: none; }
+  .btn-inner { padding: 18px 36px; }
+}
+@media(max-width: 480px) {
+  .programs-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-fixed"></div>
+<div class="bg-grid"></div>
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+
+<div class="content">
+
+<!-- LANDING -->
+<div id="pg-landing">
+  <h1 class="landing-title">
+    Online UG and PG Programs
+    <span class="line2">JAIN University</span>
+  </h1>
+  <div class="headline-divider">
+    <span class="divider-line"></span>
+    <span class="divider-diamond"></span>
+    <span class="divider-line"></span>
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-gold" onclick="showPrograms('UG')">
+      <div class="btn-inner">
+        <span class="btn-name">UG Programs</span>
+      </div>
+    </button>
+    <button class="btn btn-outline" onclick="showPrograms('PG')">
+      <div class="btn-inner">
+        <span class="btn-name">PG Programs</span>
+      </div>
+    </button>
+  </div>
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-lbl">UG Programs</div>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat">
+      <div class="stat-num">9</div>
+      <div class="stat-lbl">UG Specializations</div>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">PG Programs</div>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat">
+      <div class="stat-num">22</div>
+      <div class="stat-lbl">PG Specializations</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAM LIST -->
+<div id="pg-programs">
+  <div class="topbar">
+    <div class="topbar-brand">JAIN University <span id="pgtype-label"></span></div>
+    <button class="back-btn" onclick="goHome()">← Back to Home</button>
+  </div>
+  <div class="page-body">
+    <div class="page-hero">
+      <div>
+        <div class="page-kicker" id="prog-kicker"></div>
+        <h2 class="page-title" id="prog-title"></h2>
+        <p class="page-desc">Select a program to explore available specializations and fee structure.</p>
+      </div>
+      <div class="count-pill" id="prog-count-pill"></div>
+    </div>
+    <div class="programs-grid" id="programs-grid"></div>
+  </div>
+</div>
+
+<!-- ELECTIVES -->
+<div id="pg-electives">
+  <div class="topbar">
+    <div class="topbar-brand">JAIN University</div>
+    <button class="back-btn" id="elec-back-btn">← Back to Programs</button>
+  </div>
+  <div class="page-body">
+    <div class="breadcrumb">
+      <span class="bc-link" onclick="goHome()">Home</span>
+      <span class="bc-sep">›</span>
+      <span class="bc-link" id="bc-pgtype"></span>
+      <span class="bc-sep">›</span>
+      <span class="bc-current" id="bc-prog"></span>
+    </div>
+    <div class="page-hero">
+      <div>
+        <div class="page-kicker" id="elec-kicker"></div>
+        <h2 class="page-title" id="elec-title"></h2>
+        <p class="page-desc">All available specializations with complete fee structure and brochure downloads.</p>
+      </div>
+      <div class="count-pill" id="elec-count-pill"></div>
+    </div>
+
+    <div class="elec-table-wrap">
+      <div class="elec-table-head">
+        <span>#</span>
+        <span>Specialization Offered</span>
+        <span class="right">Sem Fee</span>
+        <span class="right">Yearly Fee</span>
+        <span class="right col-total">Total Fee</span>
+        <span class="center col-brochure">Brochure</span>
+      </div>
+      <div id="elec-table-body"></div>
+    </div>
+
+    <!-- DOMESTIC ADMISSIONS -->
+    <div class="domestic-section">
+      <h3 class="domestic-title">Domestic Admissions</h3>
+      <div class="domestic-grid">
+        <div class="domestic-card">
+          <div class="dc-label">Registration Fee</div>
+          <div class="dc-value">₹2,500</div>
+        </div>
+        <div class="domestic-card">
+          <div class="dc-label">Exam Fee Per Year</div>
+          <div class="dc-value">₹3,000 <span>/ year</span></div>
+        </div>
+      </div>
+      <div class="notice-cards">
+        <div class="notice-card">
+          <div class="notice-icon">📌</div>
+          <div>
+            <div class="notice-label">Note</div>
+            <div class="notice-text">Professional fee will be applicable during the 1st and 3rd semesters.</div>
+          </div>
+        </div>
+        <div class="notice-card">
+          <div class="notice-icon">⚠️</div>
+          <div>
+            <div class="notice-label">Disclaimer</div>
+            <div class="notice-text">An additional fee of £250 covering ACCA registration, conditional exemption and first year subscription is payable during Semester 1.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+const DATA = {
+  UG: {
+    label: "Undergraduate Programs",
+    kicker: "UG — Bachelor's Degrees",
+    programs: {
+      "B.Com": {
+        fullName: "Bachelor of Commerce",
+        electives: [
+          { name: "Accounting and Finance", sem: 20000, yearly: 40000, total: 120000, brochure: "https://drive.google.com/file/d/1IEjnyIup4U6g4h_FVjr-udMPbho2Xck8/view?usp=sharing" }
+        ]
+      },
+      "BBA": {
+        fullName: "Bachelor of Business Administration",
+        electives: [
+          { name: "Finance", sem: 25000, yearly: 50000, total: 150000, brochure: "https://drive.google.com/file/d/1Ckys5dIHJJ8ilREC1fdXTT3O1NRGm4KT/view?usp=sharing" },
+          { name: "Marketing", sem: 25000, yearly: 50000, total: 150000, brochure: "https://drive.google.com/file/d/14VnZEOh7JNT5FRkcU__IthNzeaWcOK9x/view?usp=sharing" },
+          { name: "Human Resource Management", sem: 25000, yearly: 50000, total: 150000, brochure: "https://drive.google.com/file/d/1EckRDJZb6aYCXZNNBx_8-MthJJUoXn_6/view?usp=sharing" }
+        ]
+      },
+      "BCA": {
+        fullName: "Bachelor of Computer Applications",
+        electives: [
+          { name: "Computer Science and Information Technology", sem: 22500, yearly: 45000, total: 135000, brochure: "https://drive.google.com/file/d/1Loe-aun4TPAT4XtCXNkXnwXWJ1R_6axa/view?usp=sharing" },
+          { name: "Data Science and Analytics", sem: 27500, yearly: 55000, total: 165000, brochure: "https://drive.google.com/file/d/1AohCFUSKVUk5I_NdaMRuJo1swq-ndeXm/view?usp=sharing" },
+          { name: "Cloud Computing", sem: 27500, yearly: 55000, total: 165000, brochure: "https://drive.google.com/file/d/15Dn2JfmCFGC95dCfGCpYWUqWg7jmfzvi/view?usp=sharing" },
+          { name: "Cyber Security", sem: 27500, yearly: 55000, total: 165000, brochure: "https://drive.google.com/file/d/1F1Y1dYM9eZwx5psHKtHiL1dNE91oLgbH/view?usp=sharing" },
+          { name: "Artificial Intelligence", sem: 27500, yearly: 55000, total: 165000, brochure: "https://drive.google.com/file/d/1mpQV1IDG2cyIJb3Ei4TCrVFyo0n7lPMl/view?usp=sharing" }
+        ]
+      }
+    }
+  },
+  PG: {
+    label: "Postgraduate Programs",
+    kicker: "PG — Master's Degrees",
+    programs: {
+      "M.Com": {
+        fullName: "Master of Commerce",
+        electives: [
+          { name: "Accounting and Finance", sem: 27500, yearly: 55000, total: 110000, brochure: "https://drive.google.com/file/d/1QC6G25CJyfgFdS_xkXcDGM-eKS-l_C2I/view?usp=sharing" }
+        ]
+      },
+      "MBA": {
+        fullName: "Master of Business Administration",
+        electives: [
+          { name: "Finance", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1QXoNW2ASgkHbt4y40eEo57YRknihqKXU/view?usp=sharing" },
+          { name: "Finance and Business Analytics", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1hUfAWyWKw5g7iE8lfndBgzx2dZgBY7iS/view?usp=sharing" },
+          { name: "Finance and Marketing", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1ywZ39kDc4FNyV4vLYfWsA3pMqCpaNSeM/view?usp=sharing" },
+          { name: "General Management", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1jno83ShOtmPzWJj68_qtJNv47Mx05tR0/view?usp=sharing" },
+          { name: "Human Resource and Business Analytics", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1enouq7pw08jfNz2U0HmU9o2olUQ5XQBI/view?usp=sharing" },
+          { name: "Human Resource Management", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1QPHXWTAFgruDzSSGwTGk1mTIvbaHLAmK/view?usp=sharing" },
+          { name: "Human Resource Management and Finance", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1PdTifPVpfAuWLeoVUg6XQf9xZFRz0B9P/view?usp=sharing" },
+          { name: "Information Technology Management", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1GBsDikE6U3p9r7N07MLdimo4f09-wIEi/view?usp=sharing" },
+          { name: "Marketing", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1Cpmeqey6lrHrWKxUOMHAJmDzVCnNPQht/view?usp=sharing" },
+          { name: "Marketing and Business Analytics", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/14wWT_m8Hbgr7DBQB0ryJPkrO37EWCKOu/view?usp=sharing" },
+          { name: "Marketing and Human Resource Management", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1AEwTLgeKmRwEcQ5TmmHEis0ASwTbzGgM/view?usp=sharing" },
+          { name: "Project Management", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/1U4Ix5f7GflxzZWaphDddYTJ3TvXJUfBo/view?usp=sharing" },
+          { name: "Supply Chain, Production and Operations Management", sem: 49000, yearly: 98000, total: 196000, brochure: "https://drive.google.com/file/d/15tvkVGB1DfyWLTc2C9TtwSwbgbht-fGn/view?usp=sharing" }
+        ]
+      },
+      "MCA": {
+        fullName: "Master of Computer Applications",
+        electives: [
+          { name: "Computer Science and IT", sem: 40000, yearly: 80000, total: 160000, brochure: "https://drive.google.com/file/d/1Ff5YvBDHLnC36DCYaEIdy9naEz4WOgz5/view?usp=sharing" },
+          { name: "DevOps", sem: 40000, yearly: 80000, total: 160000, brochure: "https://drive.google.com/file/d/1dbROlbjOjoCWZ-KvEdqgwgeNsMv3Thv1/view?usp=sharing" },
+          { name: "Cyber Security", sem: 40000, yearly: 80000, total: 160000, brochure: "https://drive.google.com/file/d/1K3AX2WoyRU9macTu6BPA6zQQ0FDdVX-L/view?usp=sharing" },
+          { name: "Data Analytics", sem: 40000, yearly: 80000, total: 160000, brochure: "https://drive.google.com/file/d/1oRNiGj1vaxVCUQIvF0iv1V5aIwfrhEbi/view?usp=sharing" },
+          { name: "NLP and LLM Development", sem: 40000, yearly: 80000, total: 160000, brochure: "https://drive.google.com/file/d/1mavm9-Sd9F_ruIstwj7ybXg4s_GVTYDF/view?usp=sharing" }
+        ]
+      },
+      "MA": {
+        fullName: "Master of Arts",
+        electives: [
+          { name: "English", sem: 22500, yearly: 45000, total: 90000, brochure: "https://drive.google.com/file/d/1hZamWB7qcbpB8zW04sMUm6OQygO7E-b-/view?usp=sharing" },
+          { name: "Public Policy", sem: 22500, yearly: 45000, total: 90000, brochure: "https://drive.google.com/file/d/13Rht-9_E6tUE-Fvw173Io424CD8t2LPV/view?usp=sharing" },
+          { name: "Economics", sem: 22500, yearly: 45000, total: 90000, brochure: "https://drive.google.com/file/d/1pvy24gNofZ0tqiqhAD8sEo7BsSTEacpW/view?usp=sharing" }
+        ]
+      }
+    }
+  }
+};
+
+let currentType = null;
+
+function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
+
+function goHome() {
+  hide('pg-programs'); hide('pg-electives'); show('pg-landing');
+  window.scrollTo(0,0);
+}
+
+function showPrograms(type) {
+  currentType = type;
+  hide('pg-landing'); hide('pg-electives'); show('pg-programs');
+  const d = DATA[type];
+  document.getElementById('pgtype-label').textContent = type + ' Programs';
+  document.getElementById('prog-kicker').textContent = d.kicker;
+  document.getElementById('prog-title').innerHTML = type === 'UG'
+    ? `Undergraduate <span class="accent">Programs</span>`
+    : `Postgraduate <span class="accent">Programs</span>`;
+  const progs = Object.keys(d.programs);
+  document.getElementById('prog-count-pill').textContent = progs.length + ' Programs Available';
+  const grid = document.getElementById('programs-grid');
+  grid.innerHTML = '';
+  progs.forEach((prog, idx) => {
+    const info = d.programs[prog];
+    const card = document.createElement('div');
+    card.className = 'prog-card';
+    card.style.animationDelay = (idx * 0.08) + 's';
+    card.innerHTML = `
+      <div class="prog-tag">${prog}</div>
+      <div class="prog-name">${info.fullName}</div>
+      <div class="prog-meta">${type} · ${info.electives.length} Specialization${info.electives.length > 1 ? 's' : ''} Available</div>
+      <div class="prog-footer">
+        <div class="prog-elective-count"><strong>${info.electives.length}</strong> Specialization${info.electives.length > 1 ? 's' : ''}</div>
+        <div class="prog-arrow">→</div>
+      </div>`;
+    card.onclick = () => showElectives(prog);
+    grid.appendChild(card);
+  });
+  window.scrollTo(0,0);
+}
+
+function showElectives(progKey) {
+  hide('pg-programs'); hide('pg-landing'); show('pg-electives');
+  const d = DATA[currentType];
+  const info = d.programs[progKey];
+  document.getElementById('bc-pgtype').textContent = currentType + ' Programs';
+  document.getElementById('bc-pgtype').onclick = () => showPrograms(currentType);
+  document.getElementById('bc-prog').textContent = progKey;
+  document.getElementById('elec-kicker').textContent = info.fullName;
+  document.getElementById('elec-title').innerHTML = 
+    
+`${progKey} <span class="accent">Specializations</span>`;
+  document.getElementById('elec-count-pill').textContent = info.electives.length + ' Specializations';
+  document.getElementById('elec-back-btn').onclick = () => showPrograms(currentType);
+  const body = document.getElementById('elec-table-body');
+  body.innerHTML = '';
+  info.electives.forEach((el, i) => {
+    const row = document.createElement('div');
+    row.className = 'elec-row';
+    row.style.animationDelay = (i * 0.06) + 's';
+    row.innerHTML = `
+      <div class="row-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="row-name">${el.name}</div>
+      <div class="fee-wrap"><span class="fee-val">${fmt(el.sem)}</span></div>
+      <div class="fee-wrap"><span class="fee-val">${fmt(el.yearly)}</span></div>
+      <div class="fee-wrap col-total"><span class="fee-val total-val">${fmt(el.total)}</span></div>
+      <div class="center col-brochure">
+        <a class="dl-btn" href="${el.brochure}" target="_blank" rel="noopener">⬇ Download</a>
+      </div>`;
+    body.appendChild(row);
+  });
+  window.scrollTo(0,0);
+}
+
+function show(id) { document.getElementById(id).style.display = 'block'; }
+function hide(id) { document.getElementById(id).style.display = 'none'; }
+</script>
+</body>
+</html>
